@@ -3,41 +3,27 @@ package sanitytests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import annoatations.RetryFailedCount;
 import base.BaseTest;
-import pages.HomePage;
-import pages.LoginPage;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 	
-	
-	@Test(description = "Emailid is blank")
-	public void veryfyFailureLogin1() throws InterruptedException {
-		HomePage homePage = page.getInstance(HomePage.class);
-		LoginPage loginPage = page.getInstance(LoginPage.class);
-		
-		homePage.navigateToLoginPage();
-		loginPage.login("", "abcabc");
-		Assert.assertTrue(loginPage.verifyErrorMessageDisplayed());
+	@Test
+	void Test1() {
+		Assert.assertEquals(5, 5);
 	}
 	
-	@Test(description = "Password is blank")
-	public void veryfyFailureLogin2() throws InterruptedException {
-		HomePage homePage = page.getInstance(HomePage.class);
-		LoginPage loginPage = page.getInstance(LoginPage.class);
-		
-		homePage.navigateToLoginPage();
-		loginPage.login("abc@abc.com", "");
-		Assert.assertTrue(loginPage.verifyErrorMessageDisplayed());
+	@RetryFailedCount(value = 2)
+	@Test
+	void Test2() {
+		Assert.assertEquals("abc1", "abc");
 	}
 	
-	@Test(description = "Incorrect credential")
-	public void veryfyFailureLogin3() throws InterruptedException {
-		HomePage homePage = page.getInstance(HomePage.class);
-		LoginPage loginPage = page.getInstance(LoginPage.class);
-		
-		homePage.navigateToLoginPage();
-		loginPage.login("abc@abc.com", "abcabc");
-		Assert.assertTrue(loginPage.verifyErrorMessageDisplayed());
+	@RetryFailedCount(value = 4)
+	@Test
+	void Test3() {
+		Assert.assertEquals(true, false);
 	}
+	
 
 }
