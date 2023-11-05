@@ -1,6 +1,6 @@
 package listeneres;
 
-import static reporting.ReportManger.log;
+import static reporting.ReportManager.log;
 
 import java.util.Arrays;
 
@@ -10,13 +10,15 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.Status;
 
-import reporting.ReportManger;
+import reporting.ReportManager;
 
 public class ITestListenerImpl implements ITestListener {
+	
+	ReportManager reportManager = new ReportManager();
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		ReportManger.initiateTest(result.getName());
+		reportManager.initiateTest(result.getName());
 	}
 
 	@Override
@@ -36,12 +38,12 @@ public class ITestListenerImpl implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext context) {
-		ReportManger.initiateReport();
+		reportManager.initiateReport();
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		ReportManger.endReport();
+		reportManager.endReport();
 	}
 
 	

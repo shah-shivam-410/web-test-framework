@@ -1,32 +1,40 @@
 package reporting;
 
-import java.util.Date;
+import java.io.IOException;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class ReportManger {
+public class ReportManager {
 
 	private static final String REPORT_PATH = ".//extent-reports//";
-	private static ExtentSparkReporter reporter = null;
-	private static ExtentReports report = null;
+	private ExtentReports report = null;
 	
 	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 	
-	public static void initiateReport() {
-		reporter = new ExtentSparkReporter(REPORT_PATH + new Date().toString().replaceAll("[\\s:]", "-") + ".html");
+	public void initiateReport() {
+		ExtentSparkReporter reporter = new ExtentSparkReporter(REPORT_PATH + "AutomationReport.html");
+		try {
+			reporter.loadXMLConfig(".//src//main//resources//extent-spark-config.xml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		report = new ExtentReports();
-		report.attachReporter(reporter);	
+		report.attachReporter(reporter);
 	}
 	
-	public static void endReport() {
+	public void endReport() {
 		report.flush();
 	}
 	
-	public static void initiateTest(String name) {
+	public void initiateTest(String name) {
 		test.set(report.createTest(name));
+	}
+	
+	public void endTest(String name) {
+//		test.remove();
 	}
 	
 	public static void log(Status status, String message) {
