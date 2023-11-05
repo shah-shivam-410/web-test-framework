@@ -31,8 +31,8 @@ public class LoginTest extends BaseTest {
 	@Test
 	void Test3() {
 		logger.info("Test3");
+		logger.captureScreenshot();
 		logger.info(MarkupHelper.createLabel("test label", ExtentColor.GREEN));
-		logger.fail("Test3 fail");
 		Assert.assertEquals(true, false);
 	}
 	

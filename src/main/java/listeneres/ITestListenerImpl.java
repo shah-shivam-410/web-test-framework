@@ -1,49 +1,53 @@
 package listeneres;
 
-import static reporting.ReportManager.log;
-
-import java.util.Arrays;
-
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 
-import reporting.ReportManager;
+import reporting.ExtentLogger;
+import reporting.ExtentManager;
+import reporting.ExtentReport;
 
 public class ITestListenerImpl implements ITestListener {
 	
-	ReportManager reportManager = new ReportManager();
-
+	public ExtentReport extentReport = null;
+	public ExtentManager extentManager = null;
+	public ExtentLogger logger = null;
+	
 	@Override
 	public void onTestStart(ITestResult result) {
-		reportManager.initiateTest(result.getName());
+		extentReport.createTest(result.getName());
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		log(Status.PASS, "123");
+		logger.pass("123pass");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		log(Status.FAIL, Arrays.toString(result.getThrowable().getStackTrace()));
+		logger.fail(result.getThrowable());
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		log(Status.SKIP, "qpe");
+		logger.skip(MarkupHelper.createLabel("skip2344", ExtentColor.PURPLE));
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
-		reportManager.initiateReport();
+		extentReport = new ExtentReport();
+		extentReport = new ExtentReport();
+		logger = new ExtentLogger();
+		extentReport.initReports();
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		reportManager.endReport();
+		extentReport.flushReports();
 	}
 
 	

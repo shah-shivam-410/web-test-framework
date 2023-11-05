@@ -4,7 +4,7 @@
 <suite thread-count="1" parallel="tests" name="Suite">
 
 	<listeners>
-		<!-- <listener class-name="listeneres.ITestListenerImpl" /> -->
+		<listener class-name="listeneres.ITestListenerImpl" />
 		<listener class-name="listeneres.IAnnotationTransformerImpl" />
 	</listeners>
 	

@@ -24,6 +24,10 @@ public class ExtentLogger {
     public void fail(String message) {
         extentManager.getExtentTest().fail(message);
     }
+    
+    public void fail(Throwable t) {
+        extentManager.getExtentTest().fail(t);
+    }
 
     public void fail(Markup message) {
         extentManager.getExtentTest().fail(message);

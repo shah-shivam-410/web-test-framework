@@ -1,8 +1,6 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.ITest;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -24,24 +22,21 @@ public class BaseTest {
 	
 	@BeforeSuite
 	public void setUpRun() {
-		extentReport = new ExtentReport();
-		extentReport = new ExtentReport();
-		logger = new ExtentLogger();
-		extentReport.initReports();
+		
 	}
 	
 	@AfterSuite
 	public void tearDownRun() {
-		extentReport.flushReports();
+
 	}
 	
 	@BeforeMethod
 	public void setup(ITestResult test) {
-		extentReport.createTest(test.getName());
+
 	}
 	
 	@AfterMethod
 	public void teardown() {
-		extentReport.completeTest();
+
 	}
 }
