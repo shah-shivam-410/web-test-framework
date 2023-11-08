@@ -7,6 +7,7 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
+import annoatations.Authors;
 import reporting.ExtentLogger;
 import reporting.ExtentManager;
 import reporting.ExtentReport;
@@ -20,6 +21,15 @@ public class ITestListenerImpl implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		extentReport.createTest(result.getName());
+		Authors annotation = result
+				.getMethod()
+				.getConstructorOrMethod()
+				.getMethod()
+				.getAnnotation(Authors.class);
+		if(annotation != null) {
+			extentReport.assignTestAuthor(annotation.authors());
+		}
+		extentReport.assignTestCategory(result.getMethod().getGroups());
 	}
 
 	@Override

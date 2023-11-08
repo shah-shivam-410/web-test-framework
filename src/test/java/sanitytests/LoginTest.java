@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
+import annoatations.Authors;
 import annoatations.RetryFailedCount;
 import base.BaseTest;
 import reporting.ExtentLogger;
@@ -13,21 +14,23 @@ import reporting.ExtentLogger;
 public class LoginTest extends BaseTest {
 	ExtentLogger logger = new ExtentLogger();
 	
-	@Test
+	@Authors(authors = {"abc", "qwe123"})
+	@Test(groups = {"Sanity"})
 	void Test1() {
 		logger.info("Test1");
 		Assert.assertEquals(5, 5);
 	}
 	
+	@Authors(authors = {"abc", "okr993"})
 	@RetryFailedCount(value = 2)
-	@Test
+	@Test(groups = {"Sanity", "Regression", "DVT"})
 	void Test2() {
 		logger.info("Test2");
 		logger.skip("Test2 skip");
 		Assert.assertEquals("abc1", "abc");
 	}
 	
-	@RetryFailedCount(value = 4)
+	@RetryFailedCount(value = 2)
 	@Test
 	void Test3() {
 		logger.info("Test3");
