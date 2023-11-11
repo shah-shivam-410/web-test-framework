@@ -8,7 +8,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentReport {
 
-	private final String REPORT_PATH = ".//extent-reports//";
+	private static final String REPORT_PATH = ".//extent-reports//";
 
 	ExtentReports extent = null;
 	ExtentManager extentManager = null;

@@ -1,5 +1,7 @@
 package base;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -7,18 +9,12 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import reporting.ExtentLogger;
-import reporting.ExtentManager;
-import reporting.ExtentReport;
+import driver.WebDriverSession;
 
 public class BaseTest {
 
 	public static ThreadLocal<WebDriver> tldriver = new ThreadLocal<>();
 	public Page page;
-	
-	public ExtentReport extentReport = null;
-	public ExtentManager extentManager = null;
-	public ExtentLogger logger = null;
 	
 	@BeforeSuite
 	public void setUpRun() {
@@ -31,12 +27,12 @@ public class BaseTest {
 	}
 	
 	@BeforeMethod
-	public void setup(ITestResult test) {
-
+	public void setup(ITestResult test) throws IOException {
+		WebDriverSession.startNewWebDriverSession();
 	}
 	
 	@AfterMethod
 	public void teardown() {
-
+		WebDriverSession.endWebDriverSession();
 	}
 }

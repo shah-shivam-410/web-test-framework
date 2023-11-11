@@ -1,5 +1,7 @@
 package listeneres;
 
+import java.time.LocalDateTime;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -49,6 +51,7 @@ public class ITestListenerImpl implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext context) {
+		System.out.println("Starting: " + LocalDateTime.now());
 		extentReport = new ExtentReport();
 		extentReport = new ExtentReport();
 		logger = new ExtentLogger();
@@ -58,6 +61,7 @@ public class ITestListenerImpl implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		extentReport.flushReports();
+		System.out.println("Finish: " + LocalDateTime.now());
 	}
 
 	
