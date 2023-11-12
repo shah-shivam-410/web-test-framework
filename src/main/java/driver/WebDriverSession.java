@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 
-import org.openqa.selenium.Dimension;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,20 +20,25 @@ public class WebDriverSession {
 
 	protected static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 	protected static final ThreadLocal<RemoteWebDriver> remoteWebDriver = new ThreadLocal<>();
-
+	private static final Logger LOGGER = LogManager.getLogger(WebDriverSession.class);
+	
+	
 	protected static HashMap<Long, WebDriver> map = new HashMap<>();
 
 	public static WebDriver getWebDriverSession() {
-		return map.get(Thread.currentThread().getId());
+//		return map.get(Thread.currentThread().getId());
+		return webDriver.get();
 	}
 	
 	public static void endWebDriverSession() {
-		map.get(Thread.currentThread().getId()).quit();;
+//		map.get(Thread.currentThread().getId()).quit();
+		webDriver.get().close();
+		webDriver.get().quit();
 	}
 
 	public static void startNewWebDriverSession() throws IOException {
 		String browserType = ConfigReader.getProperty(Props.BROWSER).toLowerCase();
-		System.out.println("Browser selected: " + browserType + " Thread id:" + Thread.currentThread().getId());
+		LOGGER.info("Browser selected: {}, Thread id: {}", browserType, Thread.currentThread().getId());
 		try {
 			WebDriver driver = null;
 			switch (browserType) {
@@ -60,7 +66,7 @@ public class WebDriverSession {
 			
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.valueOf(ConfigReader.getProperty(Props.IMPLICIT_WAIT))));
 			driver.manage().window().maximize();
-			map.put(Thread.currentThread().getId(), (WebDriver) webDriver.get());
+//			map.put(Thread.currentThread().getId(), (WebDriver) webDriver.get());
 
 		} catch (Exception e) {
 			e.printStackTrace();
