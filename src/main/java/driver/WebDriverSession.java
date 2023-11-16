@@ -32,7 +32,7 @@ public class WebDriverSession {
 	
 	public static void endWebDriverSession() {
 //		map.get(Thread.currentThread().getId()).quit();
-		webDriver.get().close();
+//		webDriver.get().close();
 		webDriver.get().quit();
 	}
 
