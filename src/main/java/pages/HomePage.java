@@ -21,9 +21,16 @@ public class HomePage extends BasePage implements HomePageLocators {
 		extentLogger.info("User navigated to login page");
 	}
 	
+	public void logoutUser() {
+		getElement(accountLink).click();
+		getElement(logoutLink).click();
+		extentLogger.info("User logged out");
+	}
+	
 	public void verifyUserLoggedin() {
 		getElement(accountLink).click();
 		Assert.assertTrue(isElementPresent(myAccountLink));
+		extentLogger.captureScreenshot();
 		extentLogger.pass("User login varified");
 	}
 	

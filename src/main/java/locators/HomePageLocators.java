@@ -8,6 +8,6 @@ public interface HomePageLocators {
 	By loginLink 		= By.linkText("Login");
 	By registerLink 		= By.linkText("Register");
 	By myAccountLink 	= By.linkText("My Account");
-	
+	By logoutLink 		= By.linkText("Logout"); 
 
 }

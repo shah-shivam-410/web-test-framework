@@ -24,6 +24,7 @@ public class LoginPage extends BasePage implements LoginPageLocators {
 
 	public void verifyErrorMessageDisplayed() {
 		Assert.assertTrue(isElementPresent(errorMessage));
+		extentLogger.captureScreenshot();
 		extentLogger.pass("Error message displayed");
 	}
 

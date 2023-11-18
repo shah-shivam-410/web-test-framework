@@ -39,7 +39,9 @@ public class ITestListenerImpl implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+		extentLogger.captureScreenshot();
 		extentLogger.fail(result.getThrowable());
+		
 	}
 
 	@Override
