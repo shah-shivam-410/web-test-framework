@@ -1,15 +1,15 @@
 package base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BasePage extends Page {
-	
-	Logger log = LoggerFactory.getLogger(BasePage.class);
+
+	private static final Logger LOGGER = LogManager.getLogger(BasePage.class);
 
 	public BasePage(WebDriver driver) {
 		super(driver);
@@ -71,7 +71,7 @@ public class BasePage extends Page {
 				getElement(locator).click();
 				break;
 			} catch (Exception e) {
-				log.error("Atttempt to click {} failed {} times", locator, i);
+				LOGGER.error("Atttempt to click {} failed {} times", locator, i);
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e1) {
@@ -91,7 +91,7 @@ public class BasePage extends Page {
 				getElement(locator).sendKeys(value);
 				break;
 			} catch (Exception e) {
-				log.error("Atttempt to fill {} failed {} times", locator, i);
+				LOGGER.error("Atttempt to fill {} failed {} times", locator, i);
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e1) {

@@ -8,7 +8,7 @@
 		<listener class-name="listeneres.IAnnotationTransformerImpl" />
 	</listeners>
 	
-	<test thread-count="6" parallel="methods" name="Test">
+	<test thread-count="4" parallel="methods" name="Test">
 		<classes>
 			<class name="sanitytests.LoginTest" />
 		</classes>

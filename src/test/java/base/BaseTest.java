@@ -29,6 +29,7 @@ public class BaseTest {
 	@BeforeMethod
 	public void setup(ITestResult test) throws IOException {
 		WebDriverSession.startNewWebDriverSession();
+		WebDriverSession.getWebDriverSession().get("https://tutorialsninja.com/demo/index.php?route=common/home");
 	}
 	
 	@AfterMethod

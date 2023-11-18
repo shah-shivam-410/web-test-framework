@@ -34,7 +34,7 @@ public class ITestListenerImpl implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		extentLogger.pass("123pass");
+		extentLogger.pass("Test passed");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ITestListenerImpl implements ITestListener {
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		extentLogger.skip(MarkupHelper.createLabel("skip2344", ExtentColor.PURPLE));
+		extentLogger.skip(MarkupHelper.createLabel("Test skipped", ExtentColor.PURPLE));
 	}
 
 	@Override

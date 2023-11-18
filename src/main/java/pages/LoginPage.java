@@ -1,11 +1,15 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import base.BasePage;
 import locators.LoginPageLocators;
+import reporting.ExtentLogger;
 
 public class LoginPage extends BasePage implements LoginPageLocators {
+
+	ExtentLogger extentLogger = new ExtentLogger();
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -15,16 +19,12 @@ public class LoginPage extends BasePage implements LoginPageLocators {
 		getElement(email).sendKeys(emailid);
 		getElement(password).sendKeys(passwd);
 		getElement(loginbtn).click();
+		extentLogger.info("User clicked on login button");
 	}
 
-	public boolean verifyErrorMessageDisplayed() {
-		boolean flag = false;
-		try {
-			flag = getElement(errorMessage).isDisplayed();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return flag;
+	public void verifyErrorMessageDisplayed() {
+		Assert.assertTrue(isElementPresent(errorMessage));
+		extentLogger.pass("Error message displayed");
 	}
 
 }
