@@ -9,5 +9,7 @@ public interface HomePageLocators {
 	By registerLink 		= By.linkText("Register");
 	By myAccountLink 	= By.linkText("My Account");
 	By logoutLink 		= By.linkText("Logout"); 
+	By addToCartTV		= By.xpath("//*[text()='Apple Cinema 30\"']/../../../div//*[text()='Add to Cart']/..");
+
 
 }

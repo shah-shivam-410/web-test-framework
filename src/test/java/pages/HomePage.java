@@ -34,5 +34,8 @@ public class HomePage extends BasePage implements HomePageLocators {
 		extentLogger.pass("User login varified");
 	}
 	
-	
+	public void clickAddToCartTv() {
+		getElement(addToCartTV).click();
+		Assert.assertEquals(getPageTitle(), "Apple Cinema 30");
+	}
 }
