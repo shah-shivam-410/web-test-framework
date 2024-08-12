@@ -24,4 +24,9 @@ public class Temp {
 		
 	}
 	
+	
+	public void speak(int n1) {}
+	public void speak(int n1, String... s1) {}
+	
+	
 }
