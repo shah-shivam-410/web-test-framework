@@ -16,9 +16,9 @@ public class LoginPage extends BasePage implements LoginPageLocators {
 	}
 
 	public void login(String emailid, String passwd) {
-		getElement(email).sendKeys(emailid);
-		getElement(password).sendKeys(passwd);
-		getElement(loginbtn).click();
+		fillElement(email, emailid);
+		fillElement(password, passwd);
+		clickElement(loginbtn);
 		extentLogger.info("User clicked on login button");
 	}
 

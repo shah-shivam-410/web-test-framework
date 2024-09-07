@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BasePage extends Page {
@@ -21,7 +22,7 @@ public class BasePage extends Page {
 		try {
 			ele = driver.findElement(locator);
 		} catch (Exception e) {
-			System.err.println("Error finding element : " + locator);
+			LOGGER.error("Error finding element : {}", locator);
 			e.printStackTrace();
 		}
 		return ele;
@@ -32,7 +33,7 @@ public class BasePage extends Page {
 		try {
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		} catch (Exception e) {
-			System.err.println("Error finding element : " + locator);
+			LOGGER.error("Error finding element : {}", locator);
 			e.printStackTrace();
 		}
 
@@ -44,7 +45,7 @@ public class BasePage extends Page {
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			return true;
 		} catch (Exception e) {
-			System.err.println("Error finding element : " + locator);
+			LOGGER.error("Error finding element : {}", locator);
 			e.printStackTrace();
 			return false;
 		}
@@ -57,7 +58,7 @@ public class BasePage extends Page {
 			val = (String) js.executeScript("return arguments[0]. getAttribute('" + attribute + "');",
 					getElement(locator));
 		} catch (Exception e) {
-			System.err.println("Error executing js");
+			LOGGER.error("Error executing js");
 			e.printStackTrace();
 		}
 		return val;
@@ -101,6 +102,11 @@ public class BasePage extends Page {
 				i++;
 			}
 		}
+	}
+	
+	public void tempMethod() {
+		Actions act = new Actions(driver);
+		act.dragAndDrop(null, null);
 	}
 
 }

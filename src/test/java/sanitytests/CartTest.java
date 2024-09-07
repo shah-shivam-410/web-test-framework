@@ -3,8 +3,6 @@ package sanitytests;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -22,7 +20,6 @@ import reporting.ExtentLogger;
 @Listeners({ ITestListenerImpl.class, IAnnotationTransformerImpl.class })
 public class CartTest extends BaseTest {
 	ExtentLogger extentLogger = new ExtentLogger();
-	private static final Logger LOGGER = LogManager.getLogger(CartTest.class);
 	
 	
 	@Authors(authors = { "Shivam" })
@@ -33,7 +30,6 @@ public class CartTest extends BaseTest {
 		LoginPage loginPage = new LoginPage(WebDriverSession.getWebDriverSession());
 		DbOperations dbOperations = new DbOperations();
 		
-		LOGGER.info("Test case started");
 		Assert.assertEquals(homePage.getPageTitle(), "Your Store");
 		homePage.navigateToLoginPage();
 		Assert.assertEquals(loginPage.getPageTitle(), "Account Login");
@@ -42,7 +38,6 @@ public class CartTest extends BaseTest {
 		homePage.verifyUserLoggedin();
 		Assert.assertEquals(loginPage.getPageTitle(), "My Account");
 		homePage.logoutUser();
-		LOGGER.info("Test case complete");
 		
 	}
 
@@ -54,7 +49,6 @@ public class CartTest extends BaseTest {
 		LoginPage loginPage = new LoginPage(WebDriverSession.getWebDriverSession());
 		DbOperations dbOperations = new DbOperations();
 		
-		LOGGER.info("Test case started");
 		Assert.assertEquals(homePage.getPageTitle(), "Your Store");
 		homePage.navigateToLoginPage();
 		Assert.assertEquals(loginPage.getPageTitle(), "Account Login");
@@ -62,7 +56,6 @@ public class CartTest extends BaseTest {
 		loginPage.login(user[0], user[1]);
 		loginPage.verifyErrorMessageDisplayed();
 		Assert.assertEquals(loginPage.getPageTitle(), "Account Login");
-		LOGGER.info("Test case complete");
 		
 	}
 

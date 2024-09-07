@@ -1,26 +1,30 @@
 package temp;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.sql.DriverManager;
+import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.CodeLanguage;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Temp {
 
 	public static void main(String[] args) throws IOException {
 		
-		
+		WebDriver driver = new FirefoxDriver();
+        try {
+            driver.get("http://www.google.com");
+            driver.manage().addCookie(new Cookie("foo", "bar"));
+
+            // Get cookie details with named cookie 'foo'
+            Set<Cookie> cookie1 = driver.manage().getCookies();
+            for(Cookie c : cookie1) {
+            		System.out.println(c);
+            }
+        } finally {
+            driver.quit();
+        }
 		
 	}
 	
