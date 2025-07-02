@@ -11,6 +11,7 @@
 	<test thread-count="4" parallel="methods" name="Test">
 		<classes>
 			<class name="sanitytests.LoginTest" />
+			<class name="sanitytests.CartTest" />
 		</classes>
 	</test>
 	

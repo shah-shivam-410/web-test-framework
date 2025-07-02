@@ -53,6 +53,7 @@ public class WebDriverSession {
 
 			case "firefox":
 				FirefoxOptions firefoxOptions = new FirefoxOptions();
+				firefoxOptions.addArguments("--headless");
 				firefoxOptions.addArguments("--ignore-ssl-errors=yes");
 				firefoxOptions.addArguments("--ignore-certificate-errors");
 				driver = new FirefoxDriver(firefoxOptions);

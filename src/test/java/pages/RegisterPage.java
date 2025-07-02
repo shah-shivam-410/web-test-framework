@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import locators.RegisterPageLocators;
 
 public class RegisterPage extends BasePage implements RegisterPageLocators {
@@ -11,12 +12,14 @@ public class RegisterPage extends BasePage implements RegisterPageLocators {
 		super(driver);
 	}
 
+	@Step
 	public void register(String emailid, String passwd) {
 		getElement(email).sendKeys(emailid);
 //		getElement(password).sendKeys(passwd);
 //		getElement(loginbtn).click();
 	}
 
+	@Step
 	public boolean verifyErrorMessageDisplayed() {
 		boolean flag = false;
 		try {

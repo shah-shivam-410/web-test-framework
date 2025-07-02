@@ -11,6 +11,7 @@ import annoatations.Authors;
 import base.BaseTest;
 import database.DbOperations;
 import driver.WebDriverSession;
+import io.qameta.allure.Owner;
 import listeneres.IAnnotationTransformerImpl;
 import listeneres.ITestListenerImpl;
 import pages.HomePage;
@@ -21,9 +22,9 @@ import reporting.ExtentLogger;
 public class CartTest extends BaseTest {
 	ExtentLogger extentLogger = new ExtentLogger();
 	
-	
+	@Owner("Vivek")
 	@Authors(authors = { "Shivam" })
-	@Test(description = "Successful login", groups = { "Sanity" })
+	@Test(description = "Adding TV", groups = { "Sanity" })
 	void AddToCart_TV() throws InterruptedException, SQLException, IOException {
 		
 		HomePage homePage = new HomePage(WebDriverSession.getWebDriverSession());
@@ -41,9 +42,10 @@ public class CartTest extends BaseTest {
 		
 	}
 
+	@Owner("Shivam")
 	@Authors(authors = { "Shivam" })
-	@Test(description = "UnSuccessful login", groups = { "Sanity" })
-	void UnSuccessFul_Login() throws InterruptedException, SQLException, IOException {
+	@Test(description = "Adding Mobile", groups = { "Sanity" })
+	void AddToCart_Mobile() throws InterruptedException, SQLException, IOException {
 		
 		HomePage homePage = new HomePage(WebDriverSession.getWebDriverSession());
 		LoginPage loginPage = new LoginPage(WebDriverSession.getWebDriverSession());
